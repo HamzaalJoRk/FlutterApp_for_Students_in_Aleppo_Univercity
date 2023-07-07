@@ -1,9 +1,14 @@
 import 'dart:convert';
-
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:hexcolor/hexcolor.dart';
+import 'package:test_project/Controller/StudentController.dart';
 import 'package:test_project/Login.dart';
 import 'package:http/http.dart' as http;
+
+
 class MyInfo extends StatefulWidget {
   const MyInfo({Key? key}) : super(key: key);
 
@@ -14,8 +19,11 @@ class MyInfo extends StatefulWidget {
 class _MyInfoState extends State<MyInfo> {
   List posts = [];
 
+  final StudentController studentController = Get.find();
+  late String studentId = studentController.getStudentId();
+
   Future<void> getData() async {
-    String url = 'http://10.0.2.2:8000/api/student/info?id_student=190410420';
+    String url = 'http://10.0.2.2:8000/api/student/result?id_student=$studentId';
     try {
       var response = await http.get(Uri.parse(url));
       if (response.statusCode == 200) {
@@ -143,16 +151,18 @@ class _MyInfoState extends State<MyInfo> {
                                 style: TextStyle(
                                   color: HexColor("#475071"),
                                   fontWeight: FontWeight.w500,
+                                  fontSize: 13,
                                 ),
                               ),
                             ),
                             Expanded(
-                              flex: 2,
+                              flex: 1,
                               child: Text(
                                 '${posts[0]['data']['first_name']}',
                                 style: TextStyle(
                                   color: HexColor("#475071"),
                                   fontWeight: FontWeight.w500,
+                                  fontSize: 13,
                                 ),
                               ),
                             ),
@@ -175,15 +185,17 @@ class _MyInfoState extends State<MyInfo> {
                                 style: TextStyle(
                                   color: HexColor("#475071"),
                                   fontWeight: FontWeight.w500,
+                                  fontSize: 13,
                                 ),
                               ),
                             ),
                             Expanded(
-                              flex: 2,
+                              flex: 1,
                               child: Text(' ${posts[0]['data']['middle_name']}',
                                 style: TextStyle(
                                   color: HexColor("#475071"),
                                   fontWeight: FontWeight.w500,
+                                  fontSize: 13,
                                 ),
                               ),
                             ),
@@ -200,15 +212,17 @@ class _MyInfoState extends State<MyInfo> {
                                 style: TextStyle(
                                   color: HexColor("#475071"),
                                   fontWeight: FontWeight.w500,
+                                  fontSize: 13,
                                 ),
                               ),
                             ),
                             Expanded(
-                              flex: 2,
+                              flex: 1,
                               child: Text('${posts[0]['data']['last_name']}',
                                 style: TextStyle(
                                   color: HexColor("#475071"),
                                   fontWeight: FontWeight.w500,
+                                  fontSize: 13,
                                 ),
                               ),
                             ),
@@ -231,15 +245,17 @@ class _MyInfoState extends State<MyInfo> {
                                 style: TextStyle(
                                   color: HexColor("#475071"),
                                   fontWeight: FontWeight.w500,
+                                  fontSize: 13,
                                 ),
                               ),
                             ),
                             Expanded(
-                              flex: 2,
+                              flex: 1,
                               child: Text(' ${posts[0]['data']['status_record']}',
                                 style: TextStyle(
                                   color: HexColor("#475071"),
                                   fontWeight: FontWeight.w500,
+                                  fontSize: 13,
                                 ),
                               ),
                             ),
@@ -256,15 +272,17 @@ class _MyInfoState extends State<MyInfo> {
                                 style: TextStyle(
                                   color: HexColor("#475071"),
                                   fontWeight: FontWeight.w500,
+                                  fontSize: 13,
                                 ),
                               ),
                             ),
                             Expanded(
-                              flex: 2,
+                              flex: 1,
                               child: Text('${posts[0]['data']['year_join']}',
                                 style: TextStyle(
                                   color: HexColor("#475071"),
                                   fontWeight: FontWeight.w500,
+                                  fontSize: 13,
                                 ),
                               ),
                             ),
@@ -287,15 +305,17 @@ class _MyInfoState extends State<MyInfo> {
                                 style: TextStyle(
                                   color: HexColor("#475071"),
                                   fontWeight: FontWeight.w500,
+                                  fontSize: 13,
                                 ),
                               ),
                             ),
                             Expanded(
-                              flex: 2,
-                              child: Text('${posts[0]['data']['finances'][0]['amount_paid']} 💲',
+                              flex: 1,
+                              child: Text('${posts[0]['data']['amount']} 💲',
                                 style: TextStyle(
                                   color: HexColor("#475071"),
                                   fontWeight: FontWeight.w500,
+                                  fontSize: 13,
                                 ),
                               ),
                             ),
@@ -349,36 +369,40 @@ class _MyInfoState extends State<MyInfo> {
                             style: TextStyle(
                               color: HexColor("#475071"),
                               fontWeight: FontWeight.bold,
+                              fontSize: 13,
                             ),
                           ),
                         ),
                         Expanded(
                           flex: 1,
                           child: Text(
-                            '${posts[0]['data']['finances'][0]['amount_paid']} 💲',
+                            '${posts[0]['data']['amount']} 💲',
                             style: TextStyle(
                               color: HexColor("#475071"),
                               fontWeight: FontWeight.bold,
+                              fontSize: 13,
                             ),
                           ),
                         ),
                         Expanded(
                           flex: 1,
                           child: Text(
-                            'Status: ',
+                            'block: ',
                             style: TextStyle(
                               color: HexColor("#475071"),
                               fontWeight: FontWeight.bold,
+                              fontSize: 13,
                             ),
                           ),
                         ),
                         Expanded(
                           flex: 2,
                           child: Text(
-                            'Paid',
+                            '${posts[0]['data']['block']} ',
                             style: TextStyle(
                               color: HexColor("#475071"),
                               fontWeight: FontWeight.bold,
+                              fontSize: 13,
                             ),
                           ),
                         ),
@@ -401,6 +425,7 @@ class _MyInfoState extends State<MyInfo> {
                             style: TextStyle(
                               color: HexColor("#475071"),
                               fontWeight: FontWeight.bold,
+                              fontSize: 13,
                             ),
                           ),
                         ),
@@ -410,6 +435,7 @@ class _MyInfoState extends State<MyInfo> {
                             style: TextStyle(
                               color: HexColor("#475071"),
                               fontWeight: FontWeight.bold,
+                              fontSize: 13,
                             ),
                           ),
                         ),
@@ -422,19 +448,21 @@ class _MyInfoState extends State<MyInfo> {
                       children: [
                         Expanded(
                           flex: 2,
-                          child: Text('Paid Fee:',
+                          child: Text('Remaining Fee:',
                             style: TextStyle(
                               color: HexColor("#475071"),
                               fontWeight: FontWeight.bold,
+                              fontSize: 13,
                             ),
                           ),
                         ),
                         Expanded(
                           flex: 4,
-                          child: Text(' 100 💲',
+                          child: Text((posts[0]['data']['amount'] - posts[0]['data']['finances'][0]['amount_paid']).toString() + '  💲',
                             style: TextStyle(
                               color: HexColor("#475071"),
                               fontWeight: FontWeight.bold,
+                              fontSize: 13,
                             ),
                           ),
                         ),
@@ -452,32 +480,30 @@ class _MyInfoState extends State<MyInfo> {
                   context: context,
                   builder: (BuildContext context) {
                     return AlertDialog(
-                      title: Text('تسجيل الخروج'),
-                      content: Text('هل تريد تسجيل الخروج؟'),
+                      title: Text('log out'),
+                      content: Text('Do you want to log out?'),
                       actions: <Widget>[
                         TextButton(
-                          child: Text('لا'),
+                          child: Text('No'),
                           onPressed: () {
                             Navigator.pop(context);
                           },
                         ),
-                        TextButton(
-                          child: Text('نعم'),
-                          onPressed: () {
-                            // Perform logout logic here
-                            Navigator.pushReplacement(
-                              context,
-                              MaterialPageRoute(builder: (context) => LoginScreen()),
-                            );
-                          },
 
+                        TextButton(
+                          child: Text('Yes'),
+                          onPressed: () {
+                            Get.offAll(LoginScreen());
+                          },
                         ),
                       ],
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(14),
+                      ),
                     );
                   },
                 );
               },
-
               style: ElevatedButton.styleFrom(
               primary: Colors.white,
               shape: RoundedRectangleBorder(

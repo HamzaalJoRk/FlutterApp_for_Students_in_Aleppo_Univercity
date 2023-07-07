@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:http/http.dart' as http;
 import 'YearsPage.dart';
@@ -165,9 +166,7 @@ class BodyPage extends StatelessWidget {
                       minimumSize: Size(140, 70),
                     ),
                     onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) => YearsPage()),);
+                      Get.to(YearsPage() );
                     },
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,

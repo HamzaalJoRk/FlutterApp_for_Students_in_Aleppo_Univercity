@@ -1,11 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
-import 'package:test_project/AppBarTop.dart';
 import 'package:test_project/Grades.dart';
-class YearsPage extends StatelessWidget {
+class YearsPage extends StatefulWidget {
   const YearsPage({Key? key}) : super(key: key);
 
   @override
+  State<YearsPage> createState() => _YearsPageState();
+}
+
+class _YearsPageState extends State<YearsPage> {
+  @override
+
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
@@ -42,8 +47,16 @@ class YearsPage extends StatelessWidget {
   }
 }
 
-class YearsPage2 extends StatelessWidget {
+class YearsPage2 extends StatefulWidget {
+
   const YearsPage2({Key? key}) : super(key: key);
+
+  @override
+  State<YearsPage2> createState() => _YearsPage2State();
+}
+
+class _YearsPage2State extends State<YearsPage2> {
+
 
   @override
   Widget build(BuildContext context) {
@@ -64,7 +77,7 @@ class YearsPage2 extends StatelessWidget {
               onPressed: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => Grades()),
+                  MaterialPageRoute(builder: (context) => Grades(year: 'first')),
                 );
               },
               style: ElevatedButton.styleFrom(
@@ -92,7 +105,7 @@ class YearsPage2 extends StatelessWidget {
               onPressed: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => Grades()),);
+                  MaterialPageRoute(builder: (context) => Grades(year: 'second',)),);
               },
               style: ElevatedButton.styleFrom(
                   primary: Colors.white,
@@ -119,7 +132,7 @@ class YearsPage2 extends StatelessWidget {
               onPressed: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => Grades()),);
+                  MaterialPageRoute(builder: (context) => Grades(year: 'third',)),);
               },
               style: ElevatedButton.styleFrom(
                   primary: Colors.white,
@@ -146,7 +159,7 @@ class YearsPage2 extends StatelessWidget {
               onPressed: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => Grades()),);
+                  MaterialPageRoute(builder: (context) => Grades(year: 'fourth',)),);
               },
               style: ElevatedButton.styleFrom(
                   primary: Colors.white,
@@ -159,7 +172,7 @@ class YearsPage2 extends StatelessWidget {
                   minimumSize: Size(275, 65)
               ),
               child: Text(
-                'Fourth Year',
+                'fourth Year',
                 style: TextStyle(
                   color: HexColor("#475071"),
                   fontWeight: FontWeight.bold,
@@ -173,7 +186,7 @@ class YearsPage2 extends StatelessWidget {
               onPressed: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => Grades()),);
+                  MaterialPageRoute(builder: (context) => Grades(year: 'fifth',)),);
               },
               style: ElevatedButton.styleFrom(
                   primary: Colors.white,
@@ -195,33 +208,33 @@ class YearsPage2 extends StatelessWidget {
               ),
             ),
           ),
-          Padding(padding: EdgeInsets.only(top: 20),
-            child: ElevatedButton(
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => Grades()),);
-              },
-              style: ElevatedButton.styleFrom(
-                  primary: Colors.white,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(15),
-                  ),
-                  elevation: 6,
-                  shadowColor: Colors.grey.withOpacity(0.5),
-                  padding: EdgeInsets.all(12),
-                  minimumSize: Size(275, 65)
-              ),
-              child: Text(
-                'All Years',
-                style: TextStyle(
-                  color: HexColor("#475071"),
-                  fontWeight: FontWeight.bold,
-                  fontSize: 20,
-                ),
-              ),
-            ),
-          ),
+          // Padding(padding: EdgeInsets.only(top: 20),
+          //   child: ElevatedButton(
+          //     onPressed: () {
+          //       Navigator.push(
+          //         context,
+          //         MaterialPageRoute(builder: (context) => Grades()),);
+          //     },
+          //     style: ElevatedButton.styleFrom(
+          //         primary: Colors.white,
+          //         shape: RoundedRectangleBorder(
+          //           borderRadius: BorderRadius.circular(15),
+          //         ),
+          //         elevation: 6,
+          //         shadowColor: Colors.grey.withOpacity(0.5),
+          //         padding: EdgeInsets.all(12),
+          //         minimumSize: Size(275, 65)
+          //     ),
+          //     child: Text(
+          //       'All Years',
+          //       style: TextStyle(
+          //         color: HexColor("#475071"),
+          //         fontWeight: FontWeight.bold,
+          //         fontSize: 20,
+          //       ),
+          //     ),
+          //   ),
+          // ),
         ],
       ),
     );

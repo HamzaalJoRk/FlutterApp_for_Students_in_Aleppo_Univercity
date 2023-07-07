@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:test_project/Controller/StudentController.dart';
 import 'main.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
-import'package:fluttertoast/fluttertoast.dart';
-import'package:fluttertoast/fluttertoast.dart';
+import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 
 class LoginScreen extends StatefulWidget {
@@ -16,6 +18,7 @@ class LoginScreen extends StatefulWidget {
 class _LoginScreenState extends State<LoginScreen> {
   final _formKey = GlobalKey<FormState>();
   late String _studentId;
+  final StudentController studentController = Get.put(StudentController());
 
   @override
   Widget build(BuildContext context) {
@@ -112,45 +115,27 @@ class _LoginScreenState extends State<LoginScreen> {
                               padding: EdgeInsets.all(12),
                               minimumSize: Size(200, 50)),
                           onPressed: () async {
-
-                            if(_formKey.currentState!.validate()) {
+                            if (_formKey.currentState!.validate()) {
                               _formKey.currentState!.save();
                               print('Student ID: $_studentId');
-                              final response = await http.post(Uri.parse
-                                ('http://10.0.2.2:8000/api/student/login'),
-                                body: {'id_student': _studentId},);
-                              if
-                              (response.statusCode == 200 ) {
-                                final data =jsonDecode(response.body);
-                                if (data['message'] =='ok') {
-                                  Navigator.push
-                                    (context,MaterialPageRoute
-                                      (builder: (context) =>Home()),);
+                              final response = await http.post(
+                                Uri.parse('http://10.0.2.2:8000/api/student/login'),
+                                body: {'id_student': _studentId},
+                              );
+                              if (response.statusCode == 200) {
+                                final data = jsonDecode(response.body);
+                                if (data['message'] == 'ok') {
+                                  studentController.updateStudentId(_studentId);
+                                  Get.to(Home());
+                                } else {
+                                  // إجراءات إضافية في حالة عدم النجاح
                                 }
-                                else
-                                {
-                                  Fluttertoast.showToast(
-                                      msg: "Login failed. Please try again later.",
-                                      backgroundColor: Colors.red,
-                                      textColor: Colors.white,
-                                      fontSize: 16.0,
-                                      gravity: ToastGravity.BOTTOM,
-                                      toastLength: Toast.LENGTH_SHORT);
-                                }
-                              }
-                              else
-                              {
-                                Fluttertoast.showToast
-                                  (
-                                    msg:"An error occurred. Please try again later.",
-                                    backgroundColor: Colors.red,
-                                    textColor: Colors.white,
-                                    fontSize: 16.0,
-                                    gravity: ToastGravity.BOTTOM,
-                                    toastLength: Toast.LENGTH_SHORT);
+                              } else {
+                                // إجراءات إضافية في حالة عدم النجاح
                               }
                             }
                           },
+
                           child: const Text('Login',
                           style: TextStyle(
                             fontWeight: FontWeight.w800
