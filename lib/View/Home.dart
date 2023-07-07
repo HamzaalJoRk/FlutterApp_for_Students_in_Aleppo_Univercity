@@ -1,20 +1,12 @@
-import 'dart:convert';
-
 import 'package:flutter/material.dart';
+import 'dart:convert';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 import 'package:hexcolor/hexcolor.dart';
 import 'package:test_project/Controller/StudentController.dart';
-import 'package:test_project/Grades.dart';
-import 'package:test_project/Login.dart';
-import 'package:test_project/NavPages/Block.dart';
-import 'package:test_project/body.dart';
+import 'package:test_project/View/NavPages/Block.dart';
+import 'package:test_project/View/body.dart';
 import 'NavPages/MyInfo.dart';
-
-void main() => runApp(GetMaterialApp(
-  debugShowCheckedModeBanner: false,
-  home: LoginScreen(),
-));
 
 class Home extends StatefulWidget {
   Home({Key? key}) : super(key: key);
@@ -118,43 +110,3 @@ class _HomeState extends State<Home> {
     );
   }
 }
-//
-// class DataListPage extends StatelessWidget {
-//   final List<Map<String, String>> data = [
-//     {'name': 'طالب 1', 'theory': '90', 'practice': '80', 'total': '170'},
-//     {'name': 'طالب 2', 'theory': '85', 'practice': '95', 'total': '180'},
-//     {'name': 'طالب 3', 'theory': '92', 'practice': '88', 'total': '180'},
-//   ]; // قم بتعيين البيانات هنا
-//
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//       appBar: AppBar(
-//         title: Text('عرض البيانات'),
-//       ),
-//       body: ListView.builder(
-//         itemCount: data.length,
-//         itemBuilder: (BuildContext context, int index) {
-//           final item = data[index];
-//
-//           return Card(
-//             child: ListTile(
-//               title: Row(
-//                 children: [
-//                   Expanded(
-//                     child: Text(item['name']!),
-//                   ),
-//                   Text('النظري: ${item['theory']}'),
-//                   SizedBox(width: 16),
-//                   Text('العملي: ${item['practice']}'),
-//                   SizedBox(width: 16),
-//                   Text('الكاملة: ${item['total']}'),
-//                 ],
-//               ),
-//             ),
-//           );
-//         },
-//       ),
-//     );
-//   }
-// }

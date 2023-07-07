@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:test_project/Controller/StudentController.dart';
-import 'main.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
-import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
+
+import 'package:test_project/View/Home.dart';
 
 
 class LoginScreen extends StatefulWidget {

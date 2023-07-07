@@ -5,8 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:test_project/Controller/StudentController.dart';
-import 'package:test_project/Login.dart';
 import 'package:http/http.dart' as http;
+import 'package:test_project/View/Login.dart';
 
 
 class MyInfo extends StatefulWidget {

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:test_project/AppBarTop.dart';
-import 'package:test_project/BodyPage.dart';
+import 'package:test_project/View/AppBarTop.dart';
+import 'package:test_project/View/BodyPage.dart';
 class Body extends StatelessWidget {
   const Body({Key? key}) : super(key: key);
 

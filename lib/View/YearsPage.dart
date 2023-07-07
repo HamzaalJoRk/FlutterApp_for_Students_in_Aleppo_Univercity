@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
-import 'package:test_project/Grades.dart';
+import 'package:test_project/View/Grades.dart';
 class YearsPage extends StatefulWidget {
   const YearsPage({Key? key}) : super(key: key);
 
