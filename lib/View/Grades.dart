@@ -24,10 +24,12 @@ class _GradesState extends State<Grades> {
   late String honor = '',academicStatus = '';
   List results = [];
   Set<String> numFilledCourses = {};
-
+  bool isLoading = true;
   final StudentController studentController = Get.find();
   late String studentId = studentController.getStudentId();
   late String years = widget.year;
+
+  
   Future<void> getData() async {
     String url = 'http://10.0.2.2:8000/api/student/result?id_student=$studentId';
     try {
@@ -41,6 +43,14 @@ class _GradesState extends State<Grades> {
           } else {
             results = [responseBody].cast<Map<String, dynamic>>();
           }
+          setState(() {
+            if (responseBody is List<dynamic>) {
+              results = responseBody.cast<Map<String, dynamic>>().toList();
+            } else {
+              results = [responseBody].cast<Map<String, dynamic>>();
+            }
+            isLoading = false;
+          });
         });
         print(results);
       } else {
@@ -60,7 +70,10 @@ class _GradesState extends State<Grades> {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    return Scaffold(
+    return
+      isLoading ?
+      Center(child: CircularProgressIndicator())
+          :Scaffold(
       appBar: AppBar(
         title: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -90,6 +103,7 @@ class _GradesState extends State<Grades> {
           ),
         ),
       ),
+      backgroundColor: HexColor("#E7E7F0"),
       body: PageView(
         controller: controller,
         onPageChanged: (int page) {

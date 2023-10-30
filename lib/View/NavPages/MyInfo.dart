@@ -17,7 +17,8 @@ class MyInfo extends StatefulWidget {
 }
 
 class _MyInfoState extends State<MyInfo> {
-  List posts = [];
+  List student = [];
+  bool isLoading = true;
 
   final StudentController studentController = Get.find();
   late String studentId = studentController.getStudentId();
@@ -29,18 +30,23 @@ class _MyInfoState extends State<MyInfo> {
       if (response.statusCode == 200) {
         var responseBody = jsonDecode(response.body);
 
-        //سيتم فحص responseBody باستخدام is List<dynamic> للتحقق من أنه قائمة. إذا كان
-        //كذلك، يتم تحويله إلى List<Map<String, dynamic>> باستخدام cast()، وإلا سيتم
-        //تحويله إلى List<Map<String, dynamic>> واحد فقط باستخدام cast().
         setState(() {
           if (responseBody is List<dynamic>) {
-            posts = responseBody.cast<Map<String, dynamic>>().toList();
+            student = responseBody.cast<Map<String, dynamic>>().toList();
           } else {
-            posts = [responseBody].cast<Map<String, dynamic>>();
+            student = [responseBody].cast<Map<String, dynamic>>();
           }
         });
+        setState(() {
+          if (responseBody is List<dynamic>) {
+            student = responseBody.cast<Map<String, dynamic>>().toList();
+          } else {
+            student = [responseBody].cast<Map<String, dynamic>>();
+          }
+          isLoading = false; // تحديث حالة التحميل
+        });
 
-        print(posts);
+        print(student);
 
       } else {
         print('Failed with status ${response.statusCode}');
@@ -56,10 +62,13 @@ class _MyInfoState extends State<MyInfo> {
     super.initState();
   }
 
+
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    return Column(
+    return isLoading ?
+        Center(child: CircularProgressIndicator())
+        :Column(
       children: [
         Padding(
             padding: EdgeInsets.only(top: size.height * 0.08),
@@ -120,7 +129,7 @@ class _MyInfoState extends State<MyInfo> {
                         flex: 2,
                         child: Container(
                           padding: EdgeInsets.only(top: 15),
-                          child: Text('ID: ${posts[0]['data']['id_student']}',
+                          child: Text('ID: ${student[0]['data']['id_student']}',
                             style: TextStyle(
                               color: HexColor("#475071"),
                               fontWeight: FontWeight.bold,
@@ -158,7 +167,7 @@ class _MyInfoState extends State<MyInfo> {
                             Expanded(
                               flex: 1,
                               child: Text(
-                                '${posts[0]['data']['first_name']}',
+                                '${student[0]['data']['first_name']}',
                                 style: TextStyle(
                                   color: HexColor("#475071"),
                                   fontWeight: FontWeight.w500,
@@ -191,7 +200,7 @@ class _MyInfoState extends State<MyInfo> {
                             ),
                             Expanded(
                               flex: 1,
-                              child: Text(' ${posts[0]['data']['middle_name']}',
+                              child: Text(' ${student[0]['data']['middle_name']}',
                                 style: TextStyle(
                                   color: HexColor("#475071"),
                                   fontWeight: FontWeight.w500,
@@ -218,7 +227,7 @@ class _MyInfoState extends State<MyInfo> {
                             ),
                             Expanded(
                               flex: 1,
-                              child: Text('${posts[0]['data']['last_name']}',
+                              child: Text('${student[0]['data']['last_name']}',
                                 style: TextStyle(
                                   color: HexColor("#475071"),
                                   fontWeight: FontWeight.w500,
@@ -251,7 +260,7 @@ class _MyInfoState extends State<MyInfo> {
                             ),
                             Expanded(
                               flex: 1,
-                              child: Text(' ${posts[0]['data']['status_record']}',
+                              child: Text(' ${student[0]['data']['status_record']}',
                                 style: TextStyle(
                                   color: HexColor("#475071"),
                                   fontWeight: FontWeight.w500,
@@ -278,7 +287,7 @@ class _MyInfoState extends State<MyInfo> {
                             ),
                             Expanded(
                               flex: 1,
-                              child: Text('${posts[0]['data']['year_join']}',
+                              child: Text('${student[0]['data']['year_join']}',
                                 style: TextStyle(
                                   color: HexColor("#475071"),
                                   fontWeight: FontWeight.w500,
@@ -311,7 +320,7 @@ class _MyInfoState extends State<MyInfo> {
                             ),
                             Expanded(
                               flex: 1,
-                              child: Text('${posts[0]['data']['amount']} 💲',
+                              child: Text('${student[0]['data']['amount']} 💲',
                                 style: TextStyle(
                                   color: HexColor("#475071"),
                                   fontWeight: FontWeight.w500,
@@ -376,7 +385,7 @@ class _MyInfoState extends State<MyInfo> {
                         Expanded(
                           flex: 1,
                           child: Text(
-                            '${posts[0]['data']['amount']} 💲',
+                            '${student[0]['data']['amount']} 💲',
                             style: TextStyle(
                               color: HexColor("#475071"),
                               fontWeight: FontWeight.bold,
@@ -398,7 +407,7 @@ class _MyInfoState extends State<MyInfo> {
                         Expanded(
                           flex: 2,
                           child: Text(
-                            '${posts[0]['data']['block']} ',
+                            '${student[0]['data']['block']} ',
                             style: TextStyle(
                               color: HexColor("#475071"),
                               fontWeight: FontWeight.bold,
@@ -431,7 +440,7 @@ class _MyInfoState extends State<MyInfo> {
                         ),
                         Expanded(
                           flex: 4,
-                          child: Text('${posts[0]['data']['finances'][0]['amount_paid']} 💲',
+                          child: Text('${student[0]['data']['finances'][0]['amount_paid']} 💲',
                             style: TextStyle(
                               color: HexColor("#475071"),
                               fontWeight: FontWeight.bold,
@@ -458,7 +467,7 @@ class _MyInfoState extends State<MyInfo> {
                         ),
                         Expanded(
                           flex: 4,
-                          child: Text((posts[0]['data']['amount'] - posts[0]['data']['finances'][0]['amount_paid']).toString() + '  💲',
+                          child: Text((student[0]['data']['amount'] - student[0]['data']['finances'][0]['amount_paid']).toString() + '  💲',
                             style: TextStyle(
                               color: HexColor("#475071"),
                               fontWeight: FontWeight.bold,
@@ -489,7 +498,6 @@ class _MyInfoState extends State<MyInfo> {
                             Navigator.pop(context);
                           },
                         ),
-
                         TextButton(
                           child: Text('Yes'),
                           onPressed: () {

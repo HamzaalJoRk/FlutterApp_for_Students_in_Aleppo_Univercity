@@ -43,6 +43,7 @@ class _YearsPageState extends State<YearsPage> {
         ),
       ),
       body: YearsPage2(),
+      backgroundColor: HexColor("#E7E7F0"),
     );
   }
 }

@@ -3,7 +3,6 @@ import 'package:get/get.dart';
 import 'package:test_project/Controller/StudentController.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
-
 import 'package:test_project/View/Home.dart';
 
 
@@ -16,6 +15,7 @@ class LoginScreen extends StatefulWidget {
 
 class _LoginScreenState extends State<LoginScreen> {
   final _formKey = GlobalKey<FormState>();
+  String errorMessage = '';
   late String _studentId;
   final StudentController studentController = Get.put(StudentController());
 
@@ -77,7 +77,10 @@ class _LoginScreenState extends State<LoginScreen> {
                           decoration: InputDecoration(
                             hintText: 'University Number',
                             hintStyle: const TextStyle(
-                            color: Colors.black26, fontWeight: FontWeight.bold),
+                                color: Colors.black26,
+                                fontWeight: FontWeight.bold,
+                                fontSize: 15
+                            ),
                             filled: true,
                             fillColor: Colors.white,
                             border: OutlineInputBorder(
@@ -101,8 +104,15 @@ class _LoginScreenState extends State<LoginScreen> {
                         ),
                       ),
                       SizedBox(height: 20),
+                      Text(
+                        errorMessage,
+                        style: const TextStyle(
+                          color: Colors.red,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
                       Padding(
-                        padding: const EdgeInsets.only(top: 30),
+                        padding: const EdgeInsets.only(top: 25),
                         child: ElevatedButton(
                           style: ElevatedButton.styleFrom(
                               primary: Colors.indigo[800],
@@ -126,15 +136,15 @@ class _LoginScreenState extends State<LoginScreen> {
                                 if (data['message'] == 'ok') {
                                   studentController.updateStudentId(_studentId);
                                   Get.to(Home());
-                                } else {
-                                  // إجراءات إضافية في حالة عدم النجاح
                                 }
-                              } else {
-                                // إجراءات إضافية في حالة عدم النجاح
+                                else {
+                                  setState(() {
+                                    errorMessage = 'The university ID is not found';
+                                  });
+                                }
                               }
                             }
                           },
-
                           child: const Text('Login',
                           style: TextStyle(
                             fontWeight: FontWeight.w800
@@ -142,6 +152,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           ),
                         ),
                       ),
+
                     ],
                   ),
                 ),
