@@ -1,15 +1,21 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:hexcolor/hexcolor.dart';
+import 'package:test_project/View/FirstYear.dart';
 import 'package:test_project/View/Grades.dart';
+import 'package:test_project/View/Year2.dart';
+import 'package:test_project/View/Year3.dart';
+import 'package:test_project/View/Year4.dart';
+import 'package:test_project/View/Year5.dart';
 
-class YearsPage extends StatefulWidget {
-  const YearsPage({Key? key}) : super(key: key);
+class Courses extends StatefulWidget {
+  const Courses({Key? key}) : super(key: key);
 
   @override
-  State<YearsPage> createState() => _YearsPageState();
+  State<Courses> createState() => _CoursesState();
 }
 
-class _YearsPageState extends State<YearsPage> {
+class _CoursesState extends State<Courses> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -18,7 +24,7 @@ class _YearsPageState extends State<YearsPage> {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Text(
-              'Results',
+              'Courses',
               style: TextStyle(
                   color: HexColor("#475071"), fontWeight: FontWeight.bold),
             ),
@@ -71,11 +77,7 @@ class _YearsPage2State extends State<YearsPage2> {
             padding: EdgeInsets.only(top: 30),
             child: ElevatedButton(
               onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => Grades(year: 'first')),
-                );
+                Get.to(FirstYear());
               },
               style: ElevatedButton.styleFrom(
                   primary: Colors.white,
@@ -100,13 +102,7 @@ class _YearsPage2State extends State<YearsPage2> {
             padding: EdgeInsets.only(top: 20),
             child: ElevatedButton(
               onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => Grades(
-                            year: 'second',
-                          )),
-                );
+                Get.to(Year2());
               },
               style: ElevatedButton.styleFrom(
                   primary: Colors.white,
@@ -131,13 +127,7 @@ class _YearsPage2State extends State<YearsPage2> {
             padding: EdgeInsets.only(top: 20),
             child: ElevatedButton(
               onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => Grades(
-                            year: 'third',
-                          )),
-                );
+                Get.to(Year3());
               },
               style: ElevatedButton.styleFrom(
                   primary: Colors.white,
@@ -162,13 +152,7 @@ class _YearsPage2State extends State<YearsPage2> {
             padding: EdgeInsets.only(top: 20),
             child: ElevatedButton(
               onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => Grades(
-                            year: 'fourth',
-                          )),
-                );
+                Get.to(Year4());
               },
               style: ElevatedButton.styleFrom(
                   primary: Colors.white,
@@ -180,7 +164,7 @@ class _YearsPage2State extends State<YearsPage2> {
                   padding: EdgeInsets.all(12),
                   minimumSize: Size(275, 65)),
               child: Text(
-                'fourth Year',
+                'Fourth Year',
                 style: TextStyle(
                   color: HexColor("#475071"),
                   fontWeight: FontWeight.bold,
@@ -193,13 +177,7 @@ class _YearsPage2State extends State<YearsPage2> {
             padding: EdgeInsets.only(top: 20),
             child: ElevatedButton(
               onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => Grades(
-                            year: 'fifth',
-                          )),
-                );
+                Get.to(Year5());
               },
               style: ElevatedButton.styleFrom(
                   primary: Colors.white,

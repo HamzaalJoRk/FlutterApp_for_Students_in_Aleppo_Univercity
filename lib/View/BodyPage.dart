@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hexcolor/hexcolor.dart';
+import 'package:test_project/View/Courses.dart';
 import 'package:test_project/View/YearsPage.dart';
 
 class BodyPage extends StatelessWidget {
@@ -33,7 +34,8 @@ class BodyPage extends StatelessWidget {
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Image.asset('assets/student-registration.png', width: 24.0),
+                        Image.asset('assets/student-registration.png',
+                            width: 24.0),
                         SizedBox(height: 15),
                         Text(
                           'Students Affairs',
@@ -43,8 +45,7 @@ class BodyPage extends StatelessWidget {
                         ),
                       ],
                     ),
-                  )
-              ),
+                  )),
               SizedBox(width: 30),
               Flexible(
                   flex: 1,
@@ -73,8 +74,7 @@ class BodyPage extends StatelessWidget {
                         ),
                       ],
                     ),
-                  )
-              ),
+                  )),
             ],
           ),
         ),
@@ -110,8 +110,7 @@ class BodyPage extends StatelessWidget {
                         ),
                       ],
                     ),
-                  )
-              ),
+                  )),
               SizedBox(width: 30),
               Flexible(
                   flex: 1,
@@ -126,7 +125,9 @@ class BodyPage extends StatelessWidget {
                       padding: EdgeInsets.all(12),
                       minimumSize: Size(140, 70),
                     ),
-                    onPressed: () {},
+                    onPressed: () {
+                      Get.to(Courses());
+                    },
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
@@ -140,8 +141,7 @@ class BodyPage extends StatelessWidget {
                         ),
                       ],
                     ),
-                  )
-              ),
+                  )),
             ],
           ),
         ),
@@ -164,7 +164,7 @@ class BodyPage extends StatelessWidget {
                       minimumSize: Size(140, 70),
                     ),
                     onPressed: () {
-                      Get.to(YearsPage() );
+                      Get.to(YearsPage());
                     },
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
@@ -179,8 +179,7 @@ class BodyPage extends StatelessWidget {
                         ),
                       ],
                     ),
-                  )
-              ),
+                  )),
             ],
           ),
         ),

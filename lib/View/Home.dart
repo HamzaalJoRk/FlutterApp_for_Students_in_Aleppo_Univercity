@@ -20,6 +20,7 @@ class _HomeState extends State<Home> {
     Body(),
     Bolck(),
     MyInfo(),
+    // Courses(),
   ];
   int currentIndex = 0;
   void onTap(int index) {
@@ -30,30 +31,30 @@ class _HomeState extends State<Home> {
 
   List posts = [];
 
-  final StudentController studentController = Get.find();
-  late String studentId = studentController.getStudentId();
+  // final StudentController studentController = Get.find();
+  // late String studentId = studentController.getStudentId();
   Future<void> getData() async {
-    String url = 'http://10.0.2.2:8000/api/student/info?id_student=$studentId!';
-    try {
-      var response = await http.get(Uri.parse(url));
-      if (response.statusCode == 200) {
-        var responseBody = jsonDecode(response.body);
+    // String url = 'http://10.0.2.2:8000/api/student/info?id_student=$studentId!';
+    // try {
+    //   var response = await http.get(Uri.parse(url));
+    //   if (response.statusCode == 200) {
+    //     var responseBody = jsonDecode(response.body);
 
-        setState(() {
-          if (responseBody is List<dynamic>) {
-            posts = responseBody.cast<Map<String, dynamic>>().toList();
-          } else {
-            posts = [responseBody].cast<Map<String, dynamic>>();
-          }
-        });
+    //     setState(() {
+    //       if (responseBody is List<dynamic>) {
+    //         posts = responseBody.cast<Map<String, dynamic>>().toList();
+    //       } else {
+    //         posts = [responseBody].cast<Map<String, dynamic>>();
+    //       }
+    //     });
 
-        print(posts);
-      } else {
-        print('Failed with status ${response.statusCode}');
-      }
-    } catch (e) {
-      print('Error: $e');
-    }
+    //     print(posts);
+    //   } else {
+    //     print('Failed with status ${response.statusCode}');
+    //   }
+    // } catch (e) {
+    //   print('Error: $e');
+    // }
   }
 
   @override

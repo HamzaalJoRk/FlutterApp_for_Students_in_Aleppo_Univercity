@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
+// import 'package:barcode_scan/barcode_scan.dart';
 import 'package:test_project/Controller/StudentController.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'package:test_project/View/Home.dart';
-
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
@@ -16,8 +17,22 @@ class LoginScreen extends StatefulWidget {
 class _LoginScreenState extends State<LoginScreen> {
   final _formKey = GlobalKey<FormState>();
   String errorMessage = '';
+  String _scanResult = "";
   late String _studentId;
   final StudentController studentController = Get.put(StudentController());
+  // Future<void> scanCode() async {
+  //   String barcodeScanRes;
+  //   try {
+  //     barcodeScanRes = await FlutterBarcodeScanner.scanBarcode(
+  //         "", "Cancel", true, ScanMode.BARCODE);
+  //   } on PlatformException {
+  //     barcodeScanRes = "Failed to scan";
+  //   }
+
+  //   setState(() {
+  //     _scanResult = barcodeScanRes;
+  //   });
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -79,8 +94,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             hintStyle: const TextStyle(
                                 color: Colors.black26,
                                 fontWeight: FontWeight.bold,
-                                fontSize: 15
-                            ),
+                                fontSize: 15),
                             filled: true,
                             fillColor: Colors.white,
                             border: OutlineInputBorder(
@@ -128,7 +142,8 @@ class _LoginScreenState extends State<LoginScreen> {
                               _formKey.currentState!.save();
                               print('Student ID: $_studentId');
                               final response = await http.post(
-                                Uri.parse('http://10.0.2.2:8000/api/student/login'),
+                                Uri.parse(
+                                    'http://10.0.2.2:8000/api/student/login'),
                                 body: {'id_student': _studentId},
                               );
                               if (response.statusCode == 200) {
@@ -136,23 +151,29 @@ class _LoginScreenState extends State<LoginScreen> {
                                 if (data['message'] == 'ok') {
                                   studentController.updateStudentId(_studentId);
                                   Get.to(Home());
-                                }
-                                else {
+                                } else {
                                   setState(() {
-                                    errorMessage = 'The university ID is not found';
+                                    errorMessage =
+                                        'The university ID is not found';
                                   });
                                 }
                               }
                             }
                           },
-                          child: const Text('Login',
-                          style: TextStyle(
-                            fontWeight: FontWeight.w800
-                          ),
+                          child: const Text(
+                            'Login',
+                            style: TextStyle(fontWeight: FontWeight.w800),
                           ),
                         ),
                       ),
-
+                      // Padding(
+                      //     padding: const EdgeInsets.only(top: 25),
+                      //     child: ElevatedButton(
+                      //       onPressed: () {
+                      //         scanCode();
+                      //       },
+                      //       // child: Text()
+                      //     )),
                     ],
                   ),
                 ),
