@@ -18,9 +18,8 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> {
   List pages = [
     Body(),
-    Bolck(),
+    Block(),
     MyInfo(),
-    // Courses(),
   ];
   int currentIndex = 0;
   void onTap(int index) {
@@ -98,7 +97,7 @@ class _HomeState extends State<Home> {
               label: 'Home',
             ),
             BottomNavigationBarItem(
-              icon: Icon(Icons.apps),
+              icon: Icon(Icons.article_outlined),
               label: 'State',
             ),
             BottomNavigationBarItem(
