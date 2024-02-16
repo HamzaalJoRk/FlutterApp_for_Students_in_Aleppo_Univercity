@@ -172,7 +172,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             onPressed: () {
                               scanCode();
                             },
-                            child: Text("Barcode"),
+                            child: Text("Scan Barcode"),
                           )),
                     ],
                   ),
