@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
-// import 'package:barcode_scan/barcode_scan.dart';
+import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
 import 'package:test_project/Controller/StudentController.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
@@ -20,19 +20,19 @@ class _LoginScreenState extends State<LoginScreen> {
   String _scanResult = "";
   late String _studentId;
   final StudentController studentController = Get.put(StudentController());
-  // Future<void> scanCode() async {
-  //   String barcodeScanRes;
-  //   try {
-  //     barcodeScanRes = await FlutterBarcodeScanner.scanBarcode(
-  //         "", "Cancel", true, ScanMode.BARCODE);
-  //   } on PlatformException {
-  //     barcodeScanRes = "Failed to scan";
-  //   }
+  Future<void> scanCode() async {
+    String barcodeScanRes;
+    try {
+      barcodeScanRes = await FlutterBarcodeScanner.scanBarcode(
+          "#ff75fd", "Cancel", true, ScanMode.BARCODE);
+    } on PlatformException {
+      barcodeScanRes = "Failed to scan";
+    }
 
-  //   setState(() {
-  //     _scanResult = barcodeScanRes;
-  //   });
-  // }
+    setState(() {
+      _scanResult = barcodeScanRes;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -166,14 +166,14 @@ class _LoginScreenState extends State<LoginScreen> {
                           ),
                         ),
                       ),
-                      // Padding(
-                      //     padding: const EdgeInsets.only(top: 25),
-                      //     child: ElevatedButton(
-                      //       onPressed: () {
-                      //         scanCode();
-                      //       },
-                      //       // child: Text()
-                      //     )),
+                      Padding(
+                          padding: const EdgeInsets.only(top: 25),
+                          child: ElevatedButton(
+                            onPressed: () {
+                              scanCode();
+                            },
+                            child: Text("Scan Barcode"),
+                          )),
                     ],
                   ),
                 ),
