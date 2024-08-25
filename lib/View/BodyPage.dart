@@ -21,7 +21,7 @@ class BodyPage extends StatelessWidget {
                   flex: 1,
                   child: ElevatedButton(
                     style: ElevatedButton.styleFrom(
-                      primary: Colors.white,
+                      backgroundColor: Colors.white,
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(10),
                       ),
@@ -51,7 +51,7 @@ class BodyPage extends StatelessWidget {
                   flex: 1,
                   child: ElevatedButton(
                     style: ElevatedButton.styleFrom(
-                      primary: Colors.white,
+                      backgroundColor: Colors.white,
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(10),
                       ),
@@ -87,7 +87,7 @@ class BodyPage extends StatelessWidget {
                   flex: 1,
                   child: ElevatedButton(
                     style: ElevatedButton.styleFrom(
-                      primary: Colors.white,
+                      backgroundColor: Colors.white,
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(10),
                       ),
@@ -116,7 +116,7 @@ class BodyPage extends StatelessWidget {
                   flex: 1,
                   child: ElevatedButton(
                     style: ElevatedButton.styleFrom(
-                      primary: Colors.white,
+                      backgroundColor: Colors.white,
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(10),
                       ),
@@ -154,7 +154,7 @@ class BodyPage extends StatelessWidget {
                   flex: 1,
                   child: ElevatedButton(
                     style: ElevatedButton.styleFrom(
-                      primary: Colors.white,
+                      backgroundColor: Colors.white,
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(10),
                       ),

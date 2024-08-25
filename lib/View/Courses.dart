@@ -80,7 +80,7 @@ class _YearsPage2State extends State<YearsPage2> {
                 Get.to(FirstYear());
               },
               style: ElevatedButton.styleFrom(
-                  primary: Colors.white,
+                  backgroundColor: Colors.white,
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(15),
                   ),
@@ -105,7 +105,7 @@ class _YearsPage2State extends State<YearsPage2> {
                 Get.to(Year2());
               },
               style: ElevatedButton.styleFrom(
-                  primary: Colors.white,
+                  backgroundColor: Colors.white,
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(15),
                   ),
@@ -130,7 +130,7 @@ class _YearsPage2State extends State<YearsPage2> {
                 Get.to(Year3());
               },
               style: ElevatedButton.styleFrom(
-                  primary: Colors.white,
+                  backgroundColor: Colors.white,
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(15),
                   ),
@@ -155,7 +155,7 @@ class _YearsPage2State extends State<YearsPage2> {
                 Get.to(Year4());
               },
               style: ElevatedButton.styleFrom(
-                  primary: Colors.white,
+                  backgroundColor: Colors.white,
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(15),
                   ),
@@ -180,7 +180,7 @@ class _YearsPage2State extends State<YearsPage2> {
                 Get.to(Year5());
               },
               style: ElevatedButton.styleFrom(
-                  primary: Colors.white,
+                  backgroundColor: Colors.white,
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(15),
                   ),

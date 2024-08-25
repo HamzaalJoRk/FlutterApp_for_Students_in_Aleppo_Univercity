@@ -21,40 +21,40 @@ class _GradesState extends State<Grades> {
   List results = [];
   Set<String> numFilledCourses = {};
   bool isLoading = true;
-  // final StudentController studentController = Get.find();
-  // late String studentId = studentController.getStudentId();
+  final StudentController studentController = Get.find();
+  late String studentId = studentController.getStudentId();
   late String years = widget.year;
 
   Future<void> getData() async {
-    // String url =
-    //     'http://10.0.2.2:8000/api/student/result?id_student=$studentId';
-    // try {
-    //   var response = await http.get(Uri.parse(url));
-    //   if (response.statusCode == 200) {
-    //     var responseBody = jsonDecode(response.body);
+    String url =
+        'http://10.0.2.2:8000/api/student/result?id_student=$studentId';
+    try {
+      var response = await http.get(Uri.parse(url));
+      if (response.statusCode == 200) {
+        var responseBody = jsonDecode(response.body);
 
-    //     setState(() {
-    //       if (responseBody is List<dynamic>) {
-    //         results = responseBody.cast<Map<String, dynamic>>().toList();
-    //       } else {
-    //         results = [responseBody].cast<Map<String, dynamic>>();
-    //       }
-    //       setState(() {
-    //         if (responseBody is List<dynamic>) {
-    //           results = responseBody.cast<Map<String, dynamic>>().toList();
-    //         } else {
-    //           results = [responseBody].cast<Map<String, dynamic>>();
-    //         }
-    //         isLoading = false;
-    //       });
-    //     });
-    //     print(results);
-    //   } else {
-    //     print('Failed with status ${response.statusCode}');
-    //   }
-    // } catch (e) {
-    //   print('Error: $e');
-    // }
+        setState(() {
+          if (responseBody is List<dynamic>) {
+            results = responseBody.cast<Map<String, dynamic>>().toList();
+          } else {
+            results = [responseBody].cast<Map<String, dynamic>>();
+          }
+          setState(() {
+            if (responseBody is List<dynamic>) {
+              results = responseBody.cast<Map<String, dynamic>>().toList();
+            } else {
+              results = [responseBody].cast<Map<String, dynamic>>();
+            }
+            isLoading = false;
+          });
+        });
+        print(results);
+      } else {
+        print('Failed with status ${response.statusCode}');
+      }
+    } catch (e) {
+      print('Error: $e');
+    }
   }
 
   @override

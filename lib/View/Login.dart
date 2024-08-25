@@ -18,6 +18,7 @@ class _LoginScreenState extends State<LoginScreen> {
   final _formKey = GlobalKey<FormState>();
   String errorMessage = '';
   String _scanResult = "";
+  late String _password;
   late String _studentId;
   final StudentController studentController = Get.put(StudentController());
   Future<void> scanCode() async {
@@ -125,11 +126,42 @@ class _LoginScreenState extends State<LoginScreen> {
                           fontWeight: FontWeight.bold,
                         ),
                       ),
+                      // إضافة حقل كلمة المرور
+                      Container(
+                        child: TextFormField(
+                          decoration: InputDecoration(
+                            hintText: 'Password',
+                            hintStyle: const TextStyle(
+                                color: Colors.black26,
+                                fontWeight: FontWeight.bold,
+                                fontSize: 15),
+                            filled: true,
+                            fillColor: Colors.white,
+                            border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(30),
+                              borderSide: BorderSide.none,
+                            ),
+                            prefixIcon: Icon(Icons.lock),
+                          ),
+                          obscureText: true,
+                          validator: (value) {
+                            if (value!.isEmpty) {
+                              return 'Please enter your password';
+                            } else if (value.length < 6) {
+                              return 'Password must be at least 6 characters';
+                            }
+                            return null;
+                          },
+                          onSaved: (value) {
+                            _password = value!;
+                          },
+                        ),
+                      ),
                       Padding(
                         padding: const EdgeInsets.only(top: 25),
                         child: ElevatedButton(
                           style: ElevatedButton.styleFrom(
-                              primary: Colors.indigo[800],
+                              backgroundColor: Colors.indigo[800],
                               shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(30),
                               ),
@@ -141,20 +173,26 @@ class _LoginScreenState extends State<LoginScreen> {
                             if (_formKey.currentState!.validate()) {
                               _formKey.currentState!.save();
                               print('Student ID: $_studentId');
+                              print('Password: $_password');
                               final response = await http.post(
                                 Uri.parse(
                                     'http://10.0.2.2:8000/api/student/login'),
-                                body: {'id_student': _studentId},
+                                body: {
+                                  'id_student': _studentId,
+                                  'password':
+                                      _password, // إرسال كلمة المرور مع الطلب
+                                },
                               );
-                              if (response.statusCode == 200) {
+                              if (response.statusCode == 203) {
                                 final data = jsonDecode(response.body);
                                 if (data['message'] == 'ok') {
                                   studentController.updateStudentId(_studentId);
-                                  Get.to(Home());
+                                  // Get.to(Home());
+                                  Get.to(() => Home());
                                 } else {
                                   setState(() {
                                     errorMessage =
-                                        'The university ID is not found';
+                                        'The university ID or password is incorrect';
                                   });
                                 }
                               }

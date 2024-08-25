@@ -78,7 +78,7 @@ class _YearsPage2State extends State<YearsPage2> {
                 );
               },
               style: ElevatedButton.styleFrom(
-                  primary: Colors.white,
+                  backgroundColor: Colors.white,
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(15),
                   ),
@@ -109,7 +109,7 @@ class _YearsPage2State extends State<YearsPage2> {
                 );
               },
               style: ElevatedButton.styleFrom(
-                  primary: Colors.white,
+                  backgroundColor: Colors.white,
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(15),
                   ),
@@ -140,7 +140,7 @@ class _YearsPage2State extends State<YearsPage2> {
                 );
               },
               style: ElevatedButton.styleFrom(
-                  primary: Colors.white,
+                  backgroundColor: Colors.white,
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(15),
                   ),
@@ -171,7 +171,7 @@ class _YearsPage2State extends State<YearsPage2> {
                 );
               },
               style: ElevatedButton.styleFrom(
-                  primary: Colors.white,
+                  backgroundColor: Colors.white,
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(15),
                   ),
@@ -202,7 +202,7 @@ class _YearsPage2State extends State<YearsPage2> {
                 );
               },
               style: ElevatedButton.styleFrom(
-                  primary: Colors.white,
+                  backgroundColor: Colors.white,
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(15),
                   ),
